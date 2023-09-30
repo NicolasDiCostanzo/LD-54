@@ -12,18 +12,13 @@ public class ItemHolder : MonoBehaviour
 
     private ItemType? m_currentItem = null;
 
-
-    void Update()
-    {
-        Debug.Log(m_currentItem);
-    }
-
     public void SetItem(ItemType newItem)
     {
         if (newItem == m_currentItem)
             return;
 
-        DropItem();
+        if (m_currentItem.HasValue)
+            DropItem(m_currentItem.Value);
 
         ItemBase it = items.Find((ItemBase item) => newItem == item.itemType);
         if (it != null)
@@ -35,16 +30,12 @@ public class ItemHolder : MonoBehaviour
         m_currentItem = newItem;
     }
 
-    private void DropItem()
+    public void DropItem(ItemType itemType)
     {
-        if (!m_currentItem.HasValue) return;
-
-        ItemBase it = items.Find((ItemBase item) => m_currentItem == item.itemType);
+        ItemBase it = items.Find((ItemBase item) => itemType == item.itemType);
         if (it != null)
         {
             Instantiate(it.itemPrefab, transform.position + Vector3.right, Quaternion.identity);
         }
-
-        m_currentItem = null;
     }
 }

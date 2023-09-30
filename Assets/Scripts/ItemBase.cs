@@ -4,7 +4,8 @@ using UnityEngine;
 public enum ItemType
 {
     Compass,
-    Umbrella
+    Umbrella,
+    Oil,
 }
 
 [Serializable]

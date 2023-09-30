@@ -68,6 +68,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Near item: " + item.itemType);
             m_nearestItem = item;
         }
+        if (other.TryGetComponent<ChestLoot>(out var chest))
+        {
+            ItemType lootedItem = chest.OpenChest();
+            if (lootedItem == ItemType.Oil)
+            {
+                // TODO Restore light
+            }
+            else
+            {
+                _itemHolder.DropItem(lootedItem);
+            }
+
+            Destroy(chest.gameObject, 0.1f);
+        }
     }
 
     void OnTriggerExit(Collider other)
