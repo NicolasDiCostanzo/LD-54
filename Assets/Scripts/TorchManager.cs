@@ -5,7 +5,7 @@ public class TorchManager : MonoBehaviour
     Light torch;
 
     public float fuel = 100;
-    [SerializeField] float fuelComsuptionSpeed, flickeringRange, flickeringFrq, minRange = 2.5f;
+    [SerializeField] float fuelComsuptionSpeed, fuelRestoreAmount, flickeringRange, flickeringFrq, minRange = 2.5f;
     float ratio, startingRange, timeTillFlickering, currentRange;
 
     bool isSwitchedOn = true;
@@ -44,6 +44,12 @@ public class TorchManager : MonoBehaviour
         {
             setTorchRange(currentRange);
         }
+    }
+
+    public void RestoreFuel()
+    {
+        fuel += fuelRestoreAmount;
+        fuel = Mathf.Max(fuel, 100);
     }
 
     void _consumeFuel()

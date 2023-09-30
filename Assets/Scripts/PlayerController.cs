@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ItemHolder _itemHolder;
     [SerializeField]
+    private TorchManager _torchManager;
+    [SerializeField]
     private float _speed;
 
     private Vector3 m_input;
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
             ItemType lootedItem = chest.OpenChest();
             if (lootedItem == ItemType.Oil)
             {
-                // TODO Restore light
+                _torchManager.RestoreFuel();
             }
             else
             {
