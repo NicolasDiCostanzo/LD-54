@@ -5,7 +5,7 @@ public class CompassManager : MonoBehaviour
     Vector3 exit;
     Transform player;
 
-    void Start()
+    public void Init()
     {
         exit = GameObject.Find("Exit").transform.position;
         player = GameObject.Find("Player").transform;
