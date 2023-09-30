@@ -4,25 +4,22 @@ public class CompassManager : MonoBehaviour
 {
     Vector3 exit;
     Transform player;
-    // Start is called before the first frame update
+
     void Start()
     {
         exit = GameObject.Find("Exit").transform.position;
         player = GameObject.Find("Player").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, GetNeedleRotation(player.position)));
+        Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
+        transform.rotation = GetNeedleRotation(playerPos);
     }
 
-    float GetNeedleRotation(Vector3 playerPostion) {
-        Vector3 delta = exit - playerPostion;
-        delta.y = 0;
-
-        // TODO 
-        return Vector3.SignedAngle(exit, playerPostion, Vector3.up);
-        // return - Vector3.SignedAngle(delta, Vector3.forward, Vector3.up);
+    Quaternion GetNeedleRotation(Vector3 playerPos)
+    {
+        float angle = Vector3.SignedAngle(Vector3.forward, exit - playerPos, Vector3.up);
+        return Quaternion.Euler(new Vector3(0, 0, -(angle - 45)));
     }
 }
