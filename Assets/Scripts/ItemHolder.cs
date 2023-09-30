@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -41,7 +42,7 @@ public class ItemHolder : MonoBehaviour
         ItemBase it = items.Find((ItemBase item) => itemType == item.itemType);
         if (it != null)
         {
-            Instantiate(it.itemPrefab, transform.position + Vector3.right, Quaternion.identity);
+            Instantiate(it.itemPrefab, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
         }
     }
 }
