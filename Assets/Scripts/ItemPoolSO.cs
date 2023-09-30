@@ -11,7 +11,7 @@ public struct ItemWithLootChance
     public float probability;
 }
 
-[CreateAssetMenu(fileName = "ItemPool", menuName = "ScriptableObjects/ItemPool", order = 1)]
+[CreateAssetMenu(menuName = "LD-54/ItemPool")]
 public class ItemPoolSO : ScriptableObject
 {
     public List<ItemWithLootChance> pool;
