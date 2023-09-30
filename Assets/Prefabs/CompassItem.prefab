@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5385618561713567376, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385618561713567376, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385618561713567376, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5938535788286509921, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
       propertyPath: m_Size.x
       value: 1.29
@@ -19,14 +31,14 @@ PrefabInstance:
     - target: {fileID: 5938535788286509921, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1b36d56e13fe4274f9d66c8590f23dbf, type: 3}
+      objectReference: {fileID: 21300000, guid: cf1069e37774a88c1abbbff1159c9837, type: 3}
     - target: {fileID: 5938535788286509921, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5938535788286509921, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5938535788286509921, guid: ce773004d02d9fd40b70b6acfb4083d2, type: 3}
       propertyPath: m_Color.r
@@ -105,6 +117,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87b83ab7f511fb4f9849f2f40721725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemBase:
-    itemType: 0
-    itemSprite: {fileID: 0}
+  itemType: 0
