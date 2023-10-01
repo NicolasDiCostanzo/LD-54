@@ -5,9 +5,16 @@ public class ChestLoot : MonoBehaviour
 {
     [SerializeField]
     private ItemPoolSO itemPool;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Sprite openChestSprite;
 
     public ItemType OpenChest()
     {
+        spriteRenderer.sprite = openChestSprite;
+
         bool lootOK = false;
 
         while (!lootOK)
