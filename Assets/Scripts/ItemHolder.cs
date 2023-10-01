@@ -13,12 +13,6 @@ public class ItemHolder : MonoBehaviour
 
     private ItemType? m_currentItem = null;
 
-
-    void Update()
-    {
-        //Debug.Log(m_currentItem);
-    }
-
     public void SetItem(ItemType newItem)
     {
         if (newItem == m_currentItem)
