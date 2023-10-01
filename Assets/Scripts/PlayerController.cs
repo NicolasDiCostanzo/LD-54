@@ -23,6 +23,17 @@ public class PlayerController : MonoBehaviour
     private static readonly int RunAnimation = Animator.StringToHash("RunAnimation");
     private static readonly int RunAnimationBack = Animator.StringToHash("RunAnimationBack");
 
+    private bool firstOil = true;
+    private bool firstCompass = true;
+    private bool firstUmbrella = true;
+
+    [SerializeField]
+    private ItemPopUpClose oilPopUp;
+    [SerializeField]
+    private ItemPopUpClose compassPopUp;
+    [SerializeField]
+    private ItemPopUpClose umbrellaPopUp;
+
     void Awake()
     {
         _animation = GetComponent<Animator>();
@@ -104,6 +115,9 @@ public class PlayerController : MonoBehaviour
         if (other.TryGetComponent<ChestLoot>(out var chest))
         {
             ItemType lootedItem = chest.OpenChest();
+
+            RequireHelpPopup(lootedItem);
+
             if (lootedItem == ItemType.Oil)
             {
                 _torchManager.RestoreFuel();
@@ -123,6 +137,41 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Exiting collider: " + item.itemType);
             m_nearestItem = null;
+        }
+    }
+
+    private void RequireHelpPopup(ItemType newItem)
+    {
+        switch (newItem)
+        {
+            case ItemType.Compass:
+                {
+                    if (firstCompass)
+                    {
+                        firstCompass = false;
+                        compassPopUp.gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            case ItemType.Oil:
+                {
+                    if (firstOil)
+                    {
+                        firstOil = false;
+                        oilPopUp.gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            case ItemType.Umbrella:
+                {
+                    if (firstUmbrella)
+                    {
+                        firstUmbrella = false;
+                        umbrellaPopUp.gameObject.SetActive(true);
+                    }
+                    break;
+                }
+            default: break;
         }
     }
 }
