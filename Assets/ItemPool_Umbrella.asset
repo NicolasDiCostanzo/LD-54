@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab55aa3d4b3d3547adc9ad43e61bdd4, type: 3}
-  m_Name: WeatherParams
+  m_Script: {fileID: 11500000, guid: ad9361b93898be24a96ffdfda7ed8737, type: 3}
+  m_Name: ItemPool_Umbrella
   m_EditorClassIdentifier: 
-  parameters:
-  - state: 0
-    averageDuration: 20
-    probability: 0.5
-  - state: 1
-    averageDuration: 20
-    probability: 0.2
-  - state: 2
-    averageDuration: 20
-    probability: 0.1
+  pool:
+  - itemType: 2
+    probability: 0
+  - itemType: 0
+    probability: 0
+  - itemType: 1
+    probability: 1

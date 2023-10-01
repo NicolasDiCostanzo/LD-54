@@ -1,7 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompassManager : MonoBehaviour
 {
+    WeatherManager weatherManager;
+    ItemHolder itemHolder;
+
+    [SerializeField]
+    Image compassBg;
+    [SerializeField]
+    Image needle;
+
     Vector3 exit;
     Transform player;
 
@@ -11,10 +20,31 @@ public class CompassManager : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
+    void Awake()
+    {
+        weatherManager = FindObjectOfType<WeatherManager>();
+        itemHolder = FindObjectOfType<ItemHolder>();
+    }
+
     void Update()
     {
-        Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
-        transform.rotation = GetNeedleRotation(playerPos);
+        bool hasCompass = itemHolder.CurrentItem == ItemType.Compass;
+        compassBg.enabled = hasCompass;
+        needle.enabled = hasCompass;
+
+        if (!hasCompass) return;
+
+        if (weatherManager.CurrentWeatherState != WeatherManager.WeatherState.MagneticStorm)
+        {
+
+            Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
+            transform.rotation = GetNeedleRotation(playerPos);
+        }
+        else
+        {
+            // Random rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, Random.Range(0, 360)), .01f);
+        }
     }
 
     Quaternion GetNeedleRotation(Vector3 playerPos)

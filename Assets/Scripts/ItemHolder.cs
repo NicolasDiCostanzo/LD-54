@@ -13,11 +13,7 @@ public class ItemHolder : MonoBehaviour
 
     private ItemType? m_currentItem = null;
 
-
-    void Update()
-    {
-        //Debug.Log(m_currentItem);
-    }
+    public ItemType CurrentItem => m_currentItem.HasValue ? m_currentItem.Value : ItemType.Compass;
 
     public void SetItem(ItemType newItem)
     {
@@ -42,7 +38,7 @@ public class ItemHolder : MonoBehaviour
         ItemBase it = items.Find((ItemBase item) => itemType == item.itemType);
         if (it != null)
         {
-            Instantiate(it.itemPrefab, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
+            Instantiate(it.itemPrefab, transform.position + Vector3.right, Quaternion.identity);
         }
     }
 }

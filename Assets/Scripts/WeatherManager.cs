@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WeatherManager : MonoBehaviour
 {
@@ -12,6 +11,14 @@ public class WeatherManager : MonoBehaviour
     }
 
     [SerializeField]
+    private WeatherChart _weatherChart;
+
+    [SerializeField]
+    private ParticleSystem _rainParticleSystem;
+    [SerializeField]
+    private AudioSource _thunderAudioSource;
+
+    [SerializeField]
     WeatherState _currentWeatherState;
 
     [SerializeField]
@@ -20,10 +27,14 @@ public class WeatherManager : MonoBehaviour
     private WeatherParam _currentWeatherParam;
     private float _currentTimer = 0f;
 
+    public WeatherState CurrentWeatherState => _currentWeatherState;
+
     void Start()
     {
         // warning: state order should the same as in the scriptable object!
         _currentWeatherParam = weatherParams.parameters[(int)_currentWeatherState];
+        _weatherChart.SetWeather(_currentWeatherState);
+        UpdateWeatherEffects();
     }
 
     void FixedUpdate()
@@ -52,5 +63,13 @@ public class WeatherManager : MonoBehaviour
             _currentWeatherState = candidate.state;
         }
         Debug.Log("Switching weather to " + _currentWeatherState);
+        _weatherChart.SetWeather(_currentWeatherState);
+        UpdateWeatherEffects();
+    }
+
+    private void UpdateWeatherEffects()
+    {
+        _rainParticleSystem.gameObject.SetActive(_currentWeatherState == WeatherState.Rainy);
+        _thunderAudioSource.gameObject.SetActive(_currentWeatherState == WeatherState.MagneticStorm);
     }
 }
