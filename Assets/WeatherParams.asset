@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters:
   - state: 0
-    averageDuration: 5
+    averageDuration: 20
     probability: 0.5
   - state: 1
-    averageDuration: 5
+    averageDuration: 20
     probability: 0.2
   - state: 2
-    averageDuration: 5
+    averageDuration: 20
     probability: 0.1

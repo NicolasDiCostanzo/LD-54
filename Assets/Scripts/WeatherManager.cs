@@ -14,6 +14,11 @@ public class WeatherManager : MonoBehaviour
     private WeatherChart _weatherChart;
 
     [SerializeField]
+    private ParticleSystem _rainParticleSystem;
+    [SerializeField]
+    private AudioSource _thunderAudioSource;
+
+    [SerializeField]
     WeatherState _currentWeatherState;
 
     [SerializeField]
@@ -29,6 +34,7 @@ public class WeatherManager : MonoBehaviour
         // warning: state order should the same as in the scriptable object!
         _currentWeatherParam = weatherParams.parameters[(int)_currentWeatherState];
         _weatherChart.SetWeather(_currentWeatherState);
+        UpdateWeatherEffects();
     }
 
     void FixedUpdate()
@@ -58,5 +64,12 @@ public class WeatherManager : MonoBehaviour
         }
         Debug.Log("Switching weather to " + _currentWeatherState);
         _weatherChart.SetWeather(_currentWeatherState);
+        UpdateWeatherEffects();
+    }
+
+    private void UpdateWeatherEffects()
+    {
+        _rainParticleSystem.gameObject.SetActive(_currentWeatherState == WeatherState.Rainy);
+        _thunderAudioSource.gameObject.SetActive(_currentWeatherState == WeatherState.MagneticStorm);
     }
 }

@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c178a03743e65c4babaf4b5eacd9db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentWeather: 0
+  _weatherChart: {fileID: 0}
+  _rainParticleSystem: {fileID: 0}
+  _currentWeatherState: 0
   weatherParams: {fileID: 11400000, guid: 797ae2c5fb0c74d44b26c406bef3c3aa, type: 2}
