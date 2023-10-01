@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -16,6 +15,16 @@ public class PlayerController : MonoBehaviour
 
     private bool m_wantToGrab;
     private GrabbableItem m_nearestItem;
+
+    private Animator _animation;
+
+    private static readonly int RunAnimation = Animator.StringToHash("RunAnimation");
+    private static readonly int RunAnimationBack = Animator.StringToHash("RunAnimationBack");
+
+    void Awake()
+    {
+        _animation = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,6 +53,17 @@ public class PlayerController : MonoBehaviour
         var isoRotation = Quaternion.Euler(0, 45, 0);
         var delta = isoRotation * m_input;
         _rigidbody.MovePosition(transform.position + delta * _speed * Time.deltaTime);
+        if (m_input.z <= 0f)
+        {
+            _animation.CrossFade(RunAnimation, 0, 0);
+            _itemHolder.FacingBack = false;
+        }
+        else
+        {
+            _animation.CrossFade(RunAnimationBack, 0, 0);
+            _itemHolder.FacingBack = true;
+        }
+        _itemHolder.UpdateSprite();
     }
 
     private void CheckAndGrab()
