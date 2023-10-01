@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 328078816885804144, guid: a119688dc0f8268408bcc62b2aac8a3c, type: 3}
       propertyPath: m_Name
-      value: ChestItem
+      value: ChestFuel
       objectReference: {fileID: 0}
     - target: {fileID: 3940094815212651738, guid: a119688dc0f8268408bcc62b2aac8a3c, type: 3}
       propertyPath: m_LocalPosition.x

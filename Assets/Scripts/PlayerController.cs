@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private GrabbableItem m_nearestItem;
 
     private Animator _animation;
-    private AudioSource _audioSource;
+    public AudioSource _audioSource;
 
     private static readonly int IdleAnimation = Animator.StringToHash("IdleAnimation");
     private static readonly int RunAnimation = Animator.StringToHash("RunAnimation");
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private bool firstOil = true;
     private bool firstCompass = true;
     private bool firstUmbrella = true;
+
+    public AudioManager _audioManager;
 
     [SerializeField]
     private ItemPopUpClose oilPopUp;
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
             if (lootedItem == ItemType.Oil)
             {
+                _audioManager.PlaySound("Fire");
                 _torchManager.RestoreFuel();
             }
             else

@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] randomSounds;
     public Sound[] musics;
-    public AudioSource musicSource, randomSoundSource;
+    public Sound[] playerSounds;
+    public AudioSource musicSource, randomSoundSource, playerSource;
     public static AudioManager Instance;
 
     public int minRandomSoundDelay;
@@ -28,6 +29,14 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         } else{
             Destroy(gameObject);
+        }
+    }
+
+    public void PlaySound(string name){
+        Sound player = Array.Find(playerSounds, p => p.name == name);
+        if(player != null) {
+            playerSource.clip = player.clip;
+            playerSource.Play();
         }
     }
 
