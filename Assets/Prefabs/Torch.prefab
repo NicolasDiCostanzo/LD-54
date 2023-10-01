@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 100
-  fuelComsuptionSpeed: 10
-  fuelRestoreAmount: 0
+  fuelComsuptionSpeed: 1
+  fuelRestoreAmount: 25
   flickeringRange: 0.25
   flickeringFrq: 0.25
   minRange: 2.5

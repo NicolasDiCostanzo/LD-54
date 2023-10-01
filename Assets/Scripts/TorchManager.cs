@@ -49,7 +49,7 @@ public class TorchManager : MonoBehaviour
     public void RestoreFuel()
     {
         fuel += fuelRestoreAmount;
-        fuel = Mathf.Max(fuel, 100);
+        fuel = Mathf.Min(fuel, 100);
     }
 
     void _consumeFuel()
