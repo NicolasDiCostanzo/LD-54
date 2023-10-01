@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
                 _itemHolder.DropItem(lootedItem);
             }
 
-            Destroy(chest.gameObject, 0.1f);
+            Destroy(chest.gameObject, 0.5f);
         }
     }
 

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class TorchManager : MonoBehaviour
 {
+    WeatherManager weatherManager;
+    ItemHolder itemHolder;
+
     Light torch;
 
     public float fuel = 100;
@@ -17,6 +20,12 @@ public class TorchManager : MonoBehaviour
         currentRange = startingRange;
         ratio = startingRange / fuel;
         timeTillFlickering = flickeringFrq;
+    }
+
+    void Awake()
+    {
+        weatherManager = FindObjectOfType<WeatherManager>();
+        itemHolder = FindObjectOfType<ItemHolder>();
     }
 
     void Start()
@@ -59,7 +68,16 @@ public class TorchManager : MonoBehaviour
             _switchOffTorch();
             return;
         }
-        fuel -= fuelComsuptionSpeed / 100;
+
+        float consumption = fuelComsuptionSpeed / 100f;
+
+        if (weatherManager.CurrentWeatherState == WeatherManager.WeatherState.Rainy
+        && itemHolder.CurrentItem != ItemType.Umbrella)
+        {
+            consumption *= 2f;
+        }
+
+        fuel -= consumption;
         currentRange = fuel * ratio;
     }
 

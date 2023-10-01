@@ -13,11 +13,7 @@ public class ItemHolder : MonoBehaviour
 
     private ItemType? m_currentItem = null;
 
-
-    void Update()
-    {
-        //Debug.Log(m_currentItem);
-    }
+    public ItemType CurrentItem => m_currentItem.HasValue ? m_currentItem.Value : ItemType.Compass;
 
     public void SetItem(ItemType newItem)
     {
