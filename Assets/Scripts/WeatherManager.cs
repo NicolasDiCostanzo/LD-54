@@ -12,6 +12,9 @@ public class WeatherManager : MonoBehaviour
     }
 
     [SerializeField]
+    private WeatherChart _weatherChart;
+
+    [SerializeField]
     WeatherState _currentWeatherState;
 
     [SerializeField]
@@ -24,6 +27,7 @@ public class WeatherManager : MonoBehaviour
     {
         // warning: state order should the same as in the scriptable object!
         _currentWeatherParam = weatherParams.parameters[(int)_currentWeatherState];
+        _weatherChart.SetWeather(_currentWeatherState);
     }
 
     void FixedUpdate()
@@ -52,5 +56,6 @@ public class WeatherManager : MonoBehaviour
             _currentWeatherState = candidate.state;
         }
         Debug.Log("Switching weather to " + _currentWeatherState);
+        _weatherChart.SetWeather(_currentWeatherState);
     }
 }
