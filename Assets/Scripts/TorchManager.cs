@@ -5,6 +5,7 @@ public class TorchManager : MonoBehaviour
 {
     WeatherManager weatherManager;
     ItemHolder itemHolder;
+    GameManager gameManager;
 
     Light torch;
 
@@ -14,8 +15,6 @@ public class TorchManager : MonoBehaviour
 
     bool isSwitchedOn = true;
 
-    public Action OnGameOver;
-
     void _init()
     {
         torch = GetComponentInChildren<Light>();
@@ -23,6 +22,7 @@ public class TorchManager : MonoBehaviour
         currentRange = startingRange;
         ratio = startingRange / fuel;
         timeTillFlickering = flickeringFrq;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Awake()
@@ -105,7 +105,6 @@ public class TorchManager : MonoBehaviour
     {
         torch.enabled = false;
         isSwitchedOn = false;
-        // Game Over
-        OnGameOver?.Invoke();
+        gameManager.GameOver();
     }
 }

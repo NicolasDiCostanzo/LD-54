@@ -132,6 +132,10 @@ public class PlayerController : MonoBehaviour
 
             Destroy(chest.gameObject, 0.5f);
         }
+        if (other.TryGetComponent<DoorOpen>(out var door))
+        {
+            door.OpenDoor();
+        }
     }
 
     void OnTriggerExit(Collider other)
