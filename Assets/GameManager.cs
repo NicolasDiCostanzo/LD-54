@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     CompassManager compassManager;
-    TorchManager torchManager;
     CreditsManager creditsManager;
     DoorOpen exitDoor;
     bool gameIsPaused = false;
@@ -16,7 +12,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         compassManager = FindObjectOfType<CompassManager>();
-        torchManager = FindObjectOfType<TorchManager>();
         creditsManager = FindObjectOfType<CreditsManager>();
         exitDoor = FindObjectOfType<DoorOpen>();
 
@@ -47,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     public void EndCredits()
     {
-        // torchManager.SwitchOffTorchEndCredits();
         creditsManager.Trigger();
     }
 }

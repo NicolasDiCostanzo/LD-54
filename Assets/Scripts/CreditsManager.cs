@@ -10,7 +10,13 @@ public class CreditsManager : MonoBehaviour
     [SerializeField]
     Image eyeClosing;
     [SerializeField]
+    Image endText;
+    [SerializeField]
+    Button quitButton;
+    [SerializeField]
     Sprite[] eyeAnimation;
+
+    UiManager uiManager;
 
     AudioSource audiosource;
     [SerializeField]
@@ -19,6 +25,9 @@ public class CreditsManager : MonoBehaviour
     void Awake()
     {
         audiosource = GetComponent<AudioSource>();
+        uiManager = FindObjectOfType<UiManager>();
+
+        quitButton.onClick.AddListener(uiManager.QuitGame);
     }
 
     public void Trigger()
@@ -58,6 +67,13 @@ public class CreditsManager : MonoBehaviour
         }
         eyeClosing.gameObject.SetActive(false);
 
+        yield return new WaitForSeconds(0.5f);
+
+        endText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.0f);
+
+        quitButton.gameObject.SetActive(true);
         yield return null;
     }
 }
