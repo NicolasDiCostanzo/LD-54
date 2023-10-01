@@ -45,7 +45,7 @@ public class ItemHolder : MonoBehaviour
         if (FacingBack)
             spriteRenderer.transform.localPosition = new Vector3(0.12f, 0f, -0.12f);
         else
-            spriteRenderer.transform.localPosition = new Vector3(0.095f, 0f, -0.095f);
+            spriteRenderer.transform.localPosition = new Vector3(0.05f, 0f, -0.05f);
     }
 
     private Sprite GetSprite(ItemType itemType)

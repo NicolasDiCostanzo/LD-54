@@ -733,6 +733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2470727486203384149, guid: 60e5c094145160a4dadfe123d457e6d2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a16d9e5101581c4dbed1e552fb3622f, type: 3}
     - target: {fileID: 5699038287138988731, guid: 60e5c094145160a4dadfe123d457e6d2, type: 3}
       propertyPath: _weatherChart
       value: 
