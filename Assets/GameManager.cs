@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    ExitSpawner exitSpawner;
     CompassManager compassManager;
     bool gameIsPaused = false;
     [SerializeField] GameObject pauseMenu, gameOverScreen;
@@ -12,10 +11,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Time.timeScale = 1;
-        exitSpawner = FindObjectOfType<ExitSpawner>();
         compassManager = FindObjectOfType<CompassManager>();
 
-        exitSpawner.SpawnExitAtRandomLocation();
         compassManager.Init();
     }
 
