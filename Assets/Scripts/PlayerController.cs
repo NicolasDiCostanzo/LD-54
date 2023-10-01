@@ -17,13 +17,16 @@ public class PlayerController : MonoBehaviour
     private GrabbableItem m_nearestItem;
 
     private Animator _animation;
+    private AudioSource _audioSource;
 
+    private static readonly int IdleAnimation = Animator.StringToHash("IdleAnimation");
     private static readonly int RunAnimation = Animator.StringToHash("RunAnimation");
     private static readonly int RunAnimationBack = Animator.StringToHash("RunAnimationBack");
 
     void Awake()
     {
         _animation = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,13 +56,21 @@ public class PlayerController : MonoBehaviour
         var isoRotation = Quaternion.Euler(0, 45, 0);
         var delta = isoRotation * m_input;
         _rigidbody.MovePosition(transform.position + delta * _speed * Time.deltaTime);
-        if (m_input.z <= 0f)
+        if (m_input == Vector3.zero)
         {
+            _audioSource.enabled = false;
+            _animation.CrossFade(IdleAnimation, 0, 0);
+            _itemHolder.FacingBack = false;
+        }
+        else if (m_input.z < 0f)
+        {
+            _audioSource.enabled = true;
             _animation.CrossFade(RunAnimation, 0, 0);
             _itemHolder.FacingBack = false;
         }
         else
         {
+            _audioSource.enabled = true;
             _animation.CrossFade(RunAnimationBack, 0, 0);
             _itemHolder.FacingBack = true;
         }
