@@ -38,12 +38,6 @@ public class TorchManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isSwitchedOn)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) _switchOnTorch();
-            return;
-        }
-
         _consumeFuel();
 
         timeTillFlickering -= Time.fixedDeltaTime;
@@ -107,5 +101,10 @@ public class TorchManager : MonoBehaviour
         isSwitchedOn = false;
         // Game Over
         OnGameOver?.Invoke();
+    }
+
+    public void SwitchOffTorchEndCredits()
+    {
+        torch.enabled = false;
     }
 }

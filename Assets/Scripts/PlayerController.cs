@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void GatherInput()
     {
         m_input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        m_input.Normalize();
         if (Input.GetKeyDown(KeyCode.E))
         {
             m_wantToGrab = true;

@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System;
 
 public class DoorOpen : MonoBehaviour
 {
@@ -9,11 +10,18 @@ public class DoorOpen : MonoBehaviour
     [SerializeField]
     private Sprite openDoorSprite;
 
+    public Action OnOpenDoor;
+
+    void Awake()
+    {
+        OnOpenDoor += Win;
+    }
+
     public void OpenDoor()
     {
         spriteRenderer.sprite = openDoorSprite;
 
-        Win();
+        OnOpenDoor?.Invoke();
     }
 
     public void Win() {
