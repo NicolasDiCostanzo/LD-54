@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WeatherManager : MonoBehaviour
 {
@@ -22,6 +21,8 @@ public class WeatherManager : MonoBehaviour
 
     private WeatherParam _currentWeatherParam;
     private float _currentTimer = 0f;
+
+    public WeatherState CurrentWeatherState => _currentWeatherState;
 
     void Start()
     {
