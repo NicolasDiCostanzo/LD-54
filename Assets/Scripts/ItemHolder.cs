@@ -13,7 +13,9 @@ public class ItemHolder : MonoBehaviour
 
     private ItemType? m_currentItem = null;
 
-    public ItemType CurrentItem => m_currentItem.HasValue ? m_currentItem.Value : ItemType.Compass;
+    public bool FacingBack = false;
+
+    public ItemType CurrentItem => m_currentItem.HasValue ? m_currentItem.Value : ItemType.None;
 
     public void SetItem(ItemType newItem)
     {
@@ -23,12 +25,7 @@ public class ItemHolder : MonoBehaviour
         if (m_currentItem.HasValue)
             DropItem(m_currentItem.Value);
 
-        ItemBase it = items.Find((ItemBase item) => newItem == item.itemType);
-        if (it != null)
-        {
-            spriteRenderer.sprite = it.itemSprite;
-        }
-
+        UpdateSprite();
 
         m_currentItem = newItem;
     }
@@ -40,5 +37,25 @@ public class ItemHolder : MonoBehaviour
         {
             Instantiate(it.itemPrefab, transform.position + Vector3.right, Quaternion.identity);
         }
+    }
+
+    public void UpdateSprite()
+    {
+        spriteRenderer.sprite = GetSprite(CurrentItem);
+        if (FacingBack)
+            spriteRenderer.transform.localPosition = new Vector3(0.12f, 0f, -0.12f);
+        else
+            spriteRenderer.transform.localPosition = new Vector3(0.095f, 0f, -0.095f);
+    }
+
+    private Sprite GetSprite(ItemType itemType)
+    {
+        ItemBase it = items.Find((ItemBase item) => itemType == item.itemType);
+        if (it != null)
+        {
+            return FacingBack ? it.itemSpriteBack : it.itemSprite;
+        }
+        Debug.LogWarning("No matching item with type:" + itemType);
+        return null;
     }
 }
