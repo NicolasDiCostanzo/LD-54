@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TorchManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class TorchManager : MonoBehaviour
     float ratio, startingRange, timeTillFlickering, currentRange;
 
     bool isSwitchedOn = true;
+
+    public Action OnGameOver;
 
     void _init()
     {
@@ -83,7 +86,7 @@ public class TorchManager : MonoBehaviour
 
     void _torchFlickering()
     {
-        float r = Random.Range(-flickeringRange, flickeringRange);
+        float r = UnityEngine.Random.Range(-flickeringRange, flickeringRange);
         setTorchRange(currentRange + r);
     }
 
@@ -103,5 +106,6 @@ public class TorchManager : MonoBehaviour
         torch.enabled = false;
         isSwitchedOn = false;
         // Game Over
+        OnGameOver?.Invoke();
     }
 }
