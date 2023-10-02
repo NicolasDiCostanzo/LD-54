@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +10,10 @@ public class GameManager : MonoBehaviour
     bool gameIsPaused = false;
     [SerializeField] GameObject pauseMenu, gameOverScreen;
 
+    [Range(1, 4)] 
+    [SerializeField]
+    float minCaillouxScaleRange, maxCaillouxScaleRange, minTreeScaleRange, maxTreeScaleRange;
+
     void Awake()
     {
         Time.timeScale = 1;
@@ -17,6 +23,32 @@ public class GameManager : MonoBehaviour
 
         compassManager.Init();
         exitDoor.OnOpenDoor += EndCredits;
+
+        string[] keywords = { "Cailloux" };
+
+        // Create a list to store the matching game objects.
+        List<GameObject> matchingGameObjects = new List<GameObject>();
+
+        // Find all game objects in the scene.
+        GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allGameObjects)
+        {
+            if (keywords.Any(keyword => obj.name.Contains(keyword)) && obj.name != "CaillouxInside" && obj.name != "TreeInside")
+            {
+                float scale = Random.Range(minCaillouxScaleRange, maxCaillouxScaleRange);
+                obj.transform.localScale = new Vector3(scale, scale, scale);
+
+                float rotation = Random.Range(0, 360);
+                obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, obj.transform.eulerAngles.y, rotation);
+            }
+        }
+
+        // Now you have a list of game objects that match the criteria.
+        foreach (GameObject matchingObj in matchingGameObjects)
+        {
+            Debug.Log("Matching GameObject: " + matchingObj.name);
+        }
     }
 
     private void Update()
