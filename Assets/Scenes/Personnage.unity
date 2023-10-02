@@ -5879,7 +5879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &817022561
 Light:
   m_ObjectHideFlags: 0
@@ -13740,7 +13740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7603972572713942290, guid: 60e5c094145160a4dadfe123d457e6d2, type: 3}
       propertyPath: _speed
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7603972572713942290, guid: 60e5c094145160a4dadfe123d457e6d2, type: 3}
       propertyPath: oilPopUp
