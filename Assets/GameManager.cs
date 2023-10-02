@@ -24,12 +24,15 @@ public class GameManager : MonoBehaviour
         compassManager.Init();
         exitDoor.OnOpenDoor += EndCredits;
 
+        InitRocksScales();
+    }
+
+    void InitRocksScales()
+    {
         string[] keywords = { "Cailloux" };
 
-        // Create a list to store the matching game objects.
         List<GameObject> matchingGameObjects = new List<GameObject>();
 
-        // Find all game objects in the scene.
         GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
 
         foreach (GameObject obj in allGameObjects)
@@ -42,12 +45,6 @@ public class GameManager : MonoBehaviour
                 float rotation = Random.Range(0, 360);
                 obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, obj.transform.eulerAngles.y, rotation);
             }
-        }
-
-        // Now you have a list of game objects that match the criteria.
-        foreach (GameObject matchingObj in matchingGameObjects)
-        {
-            Debug.Log("Matching GameObject: " + matchingObj.name);
         }
     }
 
