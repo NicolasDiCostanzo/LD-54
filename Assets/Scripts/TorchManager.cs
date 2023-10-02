@@ -10,13 +10,14 @@ public class TorchManager : MonoBehaviour
     Light torch;
 
     public float fuel = 100;
-    [SerializeField] float fuelComsuptionSpeed, fuelRestoreAmount, flickeringRange, flickeringFrq, minRange = 2.5f;
+    [SerializeField] float fuelComsuptionSpeed, fuelRestoreAmount, flickeringRange, flickeringFrq, minRange = 2.5f, startingFuel;
     float ratio, startingRange, timeTillFlickering, currentRange;
 
     bool isSwitchedOn = true;
 
     void _init()
     {
+        startingFuel = fuel;
         torch = GetComponentInChildren<Light>();
         startingRange = torch.range;
         currentRange = startingRange;
@@ -86,13 +87,7 @@ public class TorchManager : MonoBehaviour
 
     void setTorchRange(float newValue)
     {
-        torch.range = Mathf.Clamp(newValue, minRange, startingRange);
-    }
-
-    void _switchOnTorch()
-    {
-        torch.enabled = true;
-        isSwitchedOn = true;
+        torch.range = Mathf.Lerp(minRange, startingRange, fuel / startingFuel);
     }
 
     void _switchOffTorch()

@@ -54,7 +54,7 @@ public class CreditsManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        audiosource.PlayOneShot(audioClip);
+        
 
         yield return new WaitForSeconds(1f);
 
@@ -65,6 +65,7 @@ public class CreditsManager : MonoBehaviour
             eyeClosing.sprite = eyeFrame;
             yield return new WaitForSeconds(0.2f);
         }
+        audiosource.PlayOneShot(audioClip);
         eyeClosing.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
