@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     CompassManager compassManager;
     CreditsManager creditsManager;
+    WeatherManager weatherManager;
     DoorOpen exitDoor;
     bool gameIsPaused = false;
     [SerializeField] GameObject pauseMenu, gameOverScreen;
@@ -14,11 +15,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float minCaillouxScaleRange, maxCaillouxScaleRange, minTreeScaleRange, maxTreeScaleRange;
 
+
     void Awake()
     {
         Time.timeScale = 1;
         compassManager = FindObjectOfType<CompassManager>();
         creditsManager = FindObjectOfType<CreditsManager>();
+        weatherManager = FindObjectOfType<WeatherManager>();
         exitDoor = FindObjectOfType<DoorOpen>();
 
         compassManager.Init();
@@ -74,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void EndCredits()
     {
+        weatherManager.gameObject.SetActive(false);
         creditsManager.Trigger();
     }
 }

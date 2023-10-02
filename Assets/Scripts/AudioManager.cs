@@ -48,6 +48,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void stopEverything(){
+        if(musicSource.isPlaying){
+            musicSource.Stop();
+        }
+        if(randomSoundSource.isPlaying){
+            randomSoundSource.Stop();
+        }
+        if(playerSource.isPlaying){
+            playerSource.Stop();
+        }
+    }
+
     // Update is called once per frame
     private void Update()
     {

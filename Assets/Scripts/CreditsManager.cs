@@ -22,11 +22,13 @@ public class CreditsManager : MonoBehaviour
     [SerializeField]
     AudioClip audioClip;
 
+    AudioManager audioManager;
+
     void Awake()
     {
         audiosource = GetComponent<AudioSource>();
         uiManager = FindObjectOfType<UiManager>();
-
+        audioManager = FindObjectOfType<AudioManager>();
         quitButton.onClick.AddListener(uiManager.QuitGame);
     }
 
@@ -39,6 +41,7 @@ public class CreditsManager : MonoBehaviour
     IEnumerator PlayEndAnimation()
     {
         // fade to black
+        audioManager.stopEverything();
         float duration = 2f;
         float t = 0f;
         while (t < duration)
@@ -54,6 +57,7 @@ public class CreditsManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        audiosource.PlayOneShot(audioClip);
         
 
         yield return new WaitForSeconds(1f);
@@ -65,7 +69,6 @@ public class CreditsManager : MonoBehaviour
             eyeClosing.sprite = eyeFrame;
             yield return new WaitForSeconds(0.2f);
         }
-        audiosource.PlayOneShot(audioClip);
         eyeClosing.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
